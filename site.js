@@ -1,0 +1,5 @@
+let current=localStorage.getItem('wdhdd-lang')||(navigator.language.toLowerCase().startsWith('zh')?'zh':'en');
+function setLang(lang){current=lang;document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh][data-en]').forEach(el=>el.textContent=el.dataset[lang]);const t=document.querySelector('.lang');if(t)t.dataset.lang=lang;localStorage.setItem('wdhdd-lang',lang);document.title=lang==='zh'?'WD HDD｜空间，随你而动':'WD HDD | Make space respond.'}
+setLang(current);document.querySelector('.lang')?.addEventListener('click',()=>setLang(current==='zh'?'en':'zh'));
+const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>ob.observe(el));
+document.querySelector('.menu')?.addEventListener('click',()=>document.querySelector('nav')?.classList.toggle('open'));document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('nav')?.classList.remove('open')));
